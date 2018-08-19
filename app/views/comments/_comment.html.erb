@@ -1,0 +1,33 @@
+<% if @comments.count == 0 %>
+  <div class="text-center">
+    <h4>コメント一覧</h4>
+  </div>
+<% else %>
+  <% @comments.order("id desc").each do |comment| %>
+    <hr>
+    <div class="row">
+      <div class="col-md-2 text-center">
+        <%= image_tag comment.user.image, class:"img-circle profile-1" %>
+        <div class="row">
+          <%= link_to comment.user.name, comment.user %>
+        </div> 
+      </div>
+      <div class="col-md-10">
+        <div class="row-space-1">
+          <%= comment.content %>
+        </div>
+        
+        <div>
+          <%= comment.created_at.strftime("%Y年%m月%d日") %>
+        </div>
+        
+        <div>
+          <span class="pull-right">
+            <%= link_to "削除",[@micropost,comment],method: :delete, data: {confirm: "このコメントを消しますか?"}, class: "btn btn-danger" if user_signed_in? && comment.user == current_user %>
+            <!-- only current_user && reviewed user remove reviews -->
+          </span>
+        </div>
+      </div>
+    </div>
+  <%end%>
+<% end %>

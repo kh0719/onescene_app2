@@ -1,0 +1,33 @@
+<div class="main posts-show">
+  <div class="container">
+    <div class="post-time">
+        <%= @micropost.created_at %>
+      </div>
+      <%= image_tag @micropost.user.image, class:"img-circle profile-1" %>
+      <%= current_user.name %>
+      
+    <div class="posts-show-item">
+      <%= image_tag @micropost.picture.url %>
+      <p>
+        <%= @micropost.content %>
+      </p>
+    </div>
+    <% @micropost.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
+      <div class="row row-space-4">
+      <div class="col-md-9">
+        <h3 class="row-space-3">コメント<%= @comments.count %>件</h3>
+          <%= render 'comments/form' %>
+          <%= render 'comments/comment' %>
+      </div>
+
+      <div class="col-md-3">
+      
+      </div>
+    </div>
+      
+  </div>
+</div>

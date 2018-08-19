@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OnesceneApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "OnesceneApp", '/', id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if (!user_signed_in?) %>
+              <li><%= link_to "アカウント作成", new_user_registration_path %></li>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+            <% else %>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      <%= image_tag current_user.image, class:"img-circle profile-0" %>
+                      <%= current_user.name %>
+                    <span class="caret"></span>
+                  </a>
+              <ul class="dropdown-menu">
+                  <li><%= link_to "ユーザー一覧", users_path %></li>
+                  <li><%= link_to "投稿一覧", root_path(current_user) %></li>
+                  <li><%= link_to "プロフィール", user_path(current_user) %></li>
+                  <li><%= link_to "プロフィール編集", edit_user_registration_path %></li>
+                  <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>  
+            <% end %>  
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+</html>

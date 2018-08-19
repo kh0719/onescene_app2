@@ -1,0 +1,15 @@
+<li id="micropost-<%= micropost.id %>">
+  <%= image_tag micropost.user.image, class:"img-circle profile-1" %>
+  <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
+  <span class="content">
+    <%= link_to(micropost.content, "/microposts/#{micropost.id}") %>
+    <%= image_tag micropost.picture.url if micropost.picture? %>
+  </span>
+  <span class="timestamp">
+    <%= micropost.created_at %>
+
+      <%= link_to "削除する",  micropost, method: :delete,
+                                       data: { confirm: "本当に削除しますか?" }, class: "btn btn-danger" if user_signed_in? && micropost.user == current_user %>
+    
+  </span>
+</li>

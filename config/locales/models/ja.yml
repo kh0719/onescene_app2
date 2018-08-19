@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      micropost:
+    attributes:
+      micropost:
+        content: 内容

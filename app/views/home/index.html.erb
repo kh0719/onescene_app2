@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="micropost_form">
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>投稿一覧</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+  
+<% else %>
+
+  <div class="main index-main">
+    <div class="index-message">
+      <h2>OnesceneAppで</h2>
+      <h2>あなたの好きな場面を投稿しよう！</h2>
+    </div>
+  </div>
+  
+<% end %>  

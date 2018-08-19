@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <div class="container">
+  	<div class="row">
+  		<div class="col-lg-3 col-md-4">
+  			<h1>ユーザー一覧</h1>
+  
+        <ul class="users">
+          <% @users.each do |user| %>
+            <li>
+              <%= image_tag user.image, class: "profile-full img-circle" %>
+              <%= link_to user.name, user %>
+            </li>
+          <% end %>
+        </ul>
+  		</div>
+  	</div>
+  </div>
+<% end %>  
